@@ -57,11 +57,15 @@ export const AnimatedProjects = ({ projects, autoplay = false }) => {
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
   };
+
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const bounceUp = isMobile ? -40 : -80;
+
   return (
-    <div className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20">
-      <div className="relative grid grid-cols-1 md:grid-cols-2  gap-20">
+    <div className="max-w-[420px] sm:max-w-xl md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20">
         <div>
-          <div className="relative h-80 w-full">
+          <div className="relative h-64 sm:h-72 md:h-80 w-full">
             <AnimatePresence>
               {projects.map((testimonial, index) => (
                 <motion.div
@@ -78,7 +82,7 @@ export const AnimatedProjects = ({ projects, autoplay = false }) => {
                     z: isActive(index) ? 0 : -100,
                     rotate: isActive(index) ? 0 : randomRotateY(),
                     zIndex: isActive(index) ? 999 : projects.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
+                    y: isActive(index) ? [0, bounceUp, 0] : 0,
                   }}
                   exit={{
                     opacity: 0,
@@ -99,6 +103,7 @@ export const AnimatedProjects = ({ projects, autoplay = false }) => {
                     height={500}
                     draggable={false}
                     className="h-full w-full rounded-3xl object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   {isActive(index) && (
                     <button className="absolute top-1 left-1 inline-flex text-sm py-2 animate-shimmer items-center justify-center rounded-tl-2xl rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-4 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
@@ -200,7 +205,7 @@ export const AnimatedProjects = ({ projects, autoplay = false }) => {
                 ))}
             </motion.p>
           </motion.div>
-          <div className="flex gap-4 pt-12 md:pt-0 justify-between items-start">
+          <div className="flex gap-4 pt-6 md:pt-0 justify-between items-start">
             <div className="flex gap-4">
               <button
                 onClick={handlePrev}

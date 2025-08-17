@@ -93,11 +93,11 @@ export const Timeline = ({ experience, education }) => {
       {/* ---- Timeline list ---- */}
       <div className="relative max-w-7xl mx-auto pb-28 mt-10" ref={listRef}>
         {/* static spine */}
-        <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-neutral-800/70" />
+        <div className="absolute left-6 md:left-8 top-0 bottom-0 w-[2px] bg-neutral-800/70" />
         {/* blue progress on spine — FIXED to reach the last item */}
         <motion.div
           style={{ height: progressHeight }}
-          className="absolute left-8 top-0 w-[2px] bg-gradient-to-b from-sky-400 via-blue-400 to-blue-300 rounded-full"
+          className="absolute left-6 md:left-8 top-0 w-[2px] bg-gradient-to-b from-sky-400 via-blue-400 to-blue-300 rounded-full"
         />
 
         {data.map((item, idx) => {
@@ -132,8 +132,8 @@ export const Timeline = ({ experience, education }) => {
               </div>
 
               {/* big gutter date */}
-              <div className="w-32 md:w-44 flex-shrink-0 text-right pr-8">
-                <span className="text-neutral-400 text-2xl md:text-5xl font-bold leading-none">
+              <div className="w-24 md:w-44 flex-shrink-0 text-right pr-6 md:pr-8">
+                <span className="text-neutral-400 text-xl md:text-5xl font-bold leading-none">
                   {bigDate}
                 </span>
               </div>
@@ -165,7 +165,10 @@ export const Timeline = ({ experience, education }) => {
                 </div>
 
                 {/* bullets expand on hover */}
-                <div className="overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover/card:max-h-40 group-hover/card:opacity-100">
+                <div className="overflow-hidden transition-all duration-300
+           max-h-96 opacity-100
+           md:max-h-0 md:opacity-0
+           md:group-hover/card:max-h-40 md:group-hover/card:opacity-100">
                   <ul className="space-y-2 pt-1">
                     {item.bullets.map((b, i) => (
                       <li key={i} className="text-neutral-300 text-sm leading-relaxed">

@@ -3,6 +3,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { Cloud, fetchSimpleIcons, renderSimpleIcon } from "react-icon-cloud";
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 640px)");
+    const handler = () => setIsMobile(mql.matches);
+    handler();
+    mql.addEventListener?.("change", handler);
+    return () => mql.removeEventListener?.("change", handler);
+  }, []);
+  return isMobile;
+}
+
 export const cloudProps = {
   containerProps: {
     style: {
@@ -119,6 +131,27 @@ export const renderCustomIcon = (icon) => {
 
 export function IconCloud({ iconSlugs }) {
   const [data, setData] = useState(null);
+  const [opts, setOpts] = useState(cloudProps.options);
+  const [containerProps, setContainerProps] = useState(cloudProps.containerProps);
+
+  useEffect(() => {
+    const small = typeof window !== "undefined" && window.matchMedia("(max-width: 480px)").matches;
+    const medium = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
+
+    setOpts((prev) => ({
+      ...prev,
+      imageScale: small ? 1.2 : medium ? 1.5 : 2,
+      maxSpeed: small ? 0.03 : 0.04,
+      depth: small ? 0.8 : 1,
+    }));
+
+    setContainerProps({
+      style: {
+        ...cloudProps.containerProps.style,
+        height: small ? 220 : medium ? 260 : 300, // gives the canvas breathing room on mobile
+      },
+    });
+  }, []);
 
   useEffect(() => {
     fetchSimpleIcons({ slugs: iconSlugs }).then(setData);
@@ -129,5 +162,9 @@ export function IconCloud({ iconSlugs }) {
     return Object.values(data.simpleIcons).map((icon) => renderCustomIcon(icon));
   }, [data]);
 
-  return <Cloud {...cloudProps}>{renderedIcons}</Cloud>;
+  return (
+  <Cloud {...cloudProps} options={opts} containerProps={containerProps}>
+    {renderedIcons}
+  </Cloud>
+);
 }

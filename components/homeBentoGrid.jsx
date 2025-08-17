@@ -124,7 +124,7 @@ const SkeletonOne = () => {
   };
 
   return (
-    <div className="relative md:size-full w-full h-[20vh]">
+    <div className="relative w-full h-48 md:h-[20vh]">
       <div className="story-img-container">
         <div className="story-img-mask">
           <div className="story-img-content">
@@ -208,9 +208,8 @@ const SkeletonThree = () => {
           />
         </div>
 
-        <p
-          className={`${BODY_SIZE} mt-2 leading-snug text-neutral-700 dark:text-neutral-300 max-w-sm`}
-        >
+        <p className={`${BODY_SIZE} mt-2 leading-relaxed md:leading-snug text-neutral-700 dark:text-neutral-300 max-w-sm`}>
+          
           CS graduate passionate about building scalable apps and intelligent systems. I craft
           reliable, data-driven solutions with modern web and backend tools.
         </p>
