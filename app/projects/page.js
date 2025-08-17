@@ -5,6 +5,15 @@ import React from "react";
 const Projects = () => {
   const projects = [
     {
+    name: "Personal Portfolio Website",
+    quote:
+      "Responsive Next.js 14 portfolio with modern UI, interactive animations, SEO optimization, and dynamic project showcase.",
+    src: "/images/portfolio.webp", // replace with actual screenshot file
+    link: "https://yashdani.vercel.app",
+    stack: ["Next.js", "React", "Tailwind", "Framer Motion"],
+    createdDate: "2025",
+    },
+    {
       name: "HammerStrike — E-Auction Platform",
       quote:
         "Full-stack auction system with Spring Boot microservices, React UI, secure JDBC, live bidding, and Dockerized deployment.",
