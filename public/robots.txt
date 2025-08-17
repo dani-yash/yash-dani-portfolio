@@ -1,6 +1,4 @@
-# *
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: /sitemap.xml
+Sitemap: https://yashdani.vercel.app/sitemap.xml
