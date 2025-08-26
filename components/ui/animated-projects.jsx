@@ -62,7 +62,7 @@ export const AnimatedProjects = ({ projects, autoplay = false }) => {
   const bounceUp = isMobile ? -40 : -80;
 
   return (
-    <div className="max-w-[420px] sm:max-w-xl md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20">
+    <div className="max-w-[420px] sm:max-w-xl md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 pt-20 md:pt-28 pb-20">
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20">
         <div>
           <div className="relative h-64 sm:h-72 md:h-80 w-full">
