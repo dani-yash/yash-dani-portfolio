@@ -107,7 +107,7 @@ export const Timeline = ({ experience, education }) => {
           return (
             <motion.div
               key={`${item.company}-${item.role}-${idx}`}
-              className="relative flex items-center gap-8 md:gap-10 pl-16 pr-4 md:pl-20 md:pr-6 py-8"
+              className="relative flex items-center gap-8 md:gap-10 pl-14 pr-4 md:pl-20 md:pr-6 py-8"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -116,7 +116,7 @@ export const Timeline = ({ experience, education }) => {
               variants={rowVariants}
             >
               {/* big dot — vertically centered to align with date & card */}
-              <div className="absolute left-8 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute left-6 md:left-8 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="size-5 md:size-6 rounded-full bg-neutral-900 border border-neutral-700 grid place-items-center">
                   <motion.div
                     className="size-2.5 md:size-3 rounded-full bg-neutral-500"

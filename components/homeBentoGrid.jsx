@@ -75,7 +75,7 @@ const slugs = [
 
 export function BentoGridThirdDemo() {
   return (
-    <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
+    <BentoGrid className="max-w-4xl mx-auto auto-rows-[14rem] sm:auto-rows-[16rem] md:auto-rows-[20rem]">
       {items.map((item, i) => (
         <BentoGridItem
           key={i}
@@ -124,7 +124,7 @@ const SkeletonOne = () => {
   };
 
   return (
-    <div className="relative w-full h-48 md:h-[20vh]">
+    <div className="relative w-full h-56 sm:h-64 md:h-[20vh]">
       <div className="story-img-container">
         <div className="story-img-mask">
           <div className="story-img-content">

@@ -63,10 +63,10 @@ export function FooterDock() {
   });
 
   return (
-    <div className="fixed md:bottom-10 max-md:top-10 z-[50] left-1/2 -translate-x-1/2">
-      <div className="flex items-end justify-center h-auto w-full">
-        <FloatingDock items={items} />
-      </div>
-    </div>
-  );
+  <FloatingDock
+    items={items}
+    desktopClassName="fixed bottom-10 left-1/2 -translate-x-1/2 z-[50]"
+    mobileClassName="fixed bottom-5 right-4 z-[50]"
+  />
+);
 }

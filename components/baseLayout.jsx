@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import { MultiStepLoader as Loader } from "@/components/ui/multi-step-loader";
 import { FooterDock } from "./footerDock";
 import { usePathname } from "next/navigation";
-import { Vortex } from "./ui/vortex";
 const loadingStates = [
   { text: "Spinning up the build pipeline" },
   { text: "Linting & checking types" },

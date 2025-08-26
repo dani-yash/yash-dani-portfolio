@@ -10,13 +10,19 @@ import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from
 import Link from "next/link";
 import { useRef, useState } from "react";
 
-export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
-  return (
-    <>
-      <FloatingDockDesktop items={items} className={desktopClassName} />
-    </>
-  );
-};
+export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => (
+  <>
+    {/* Desktop (unchanged look/behavior) */}
+    <div className={cn("hidden md:flex", desktopClassName)}>
+      <FloatingDockDesktop items={items} className="" />
+    </div>
+
+    {/* Mobile (new, touch-friendly) */}
+    <div className={cn("flex md:hidden", mobileClassName)}>
+      <FloatingDockMobile items={items} className="" />
+    </div>
+  </>
+);
 
 const FloatingDockDesktop = ({ items, className }) => {
   let mouseX = useMotionValue(Infinity);
@@ -33,6 +39,42 @@ const FloatingDockDesktop = ({ items, className }) => {
         <IconContainer mouseX={mouseX} key={item.title} {...item} />
       ))}
     </motion.div>
+  );
+};
+
+const FloatingDockMobile = ({ items, className }) => {
+  return (
+    <nav
+      className={cn(
+        "flex rounded-full bg-gray-50/90 dark:bg-neutral-900/90 backdrop-blur px-3 py-2 shadow-lg",
+        className
+      )}
+    >
+      <ul className="flex items-center gap-3">
+        {items.map(({ title, icon, href, active, target, rel }) => (
+          <li key={title}>
+            <Link
+              href={href}
+              target={target}
+              rel={rel}
+              aria-label={title}
+              className={cn(
+                "size-11 flex items-center justify-center rounded-full",
+                "bg-gray-200/70 dark:bg-neutral-800/70 active:scale-95 transition",
+                active && "ring-2 ring-gray-400/60"
+              )}
+            >
+              <span className={cn(
+                "flex items-center justify-center",
+                active ? "text-black dark:text-white" : "text-neutral-600 dark:text-neutral-300"
+              )}>
+                {icon}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 
